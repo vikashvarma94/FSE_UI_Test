@@ -2,6 +2,7 @@ package StepDefinition;
 
 import PageObjects.HomePage;
 import PageObjects.UserPage;
+import Utilities.Browser;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
@@ -25,19 +26,20 @@ import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Properties;
 
-public class SmokeStepDefs {
-
+public class SmokeStepDefs extends Browser{
     private static WebDriver driver;
     HomePage homePage;
     UserPage userPage;
 
     @Before
-    public void setup() throws InterruptedException {
-        driver = new EdgeDriver();
+    public void setup() throws InterruptedException, IOException {
+        driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
         homePage = new HomePage(driver);
         userPage = new UserPage(driver);
+
     }
 
     @After
@@ -48,8 +50,8 @@ public class SmokeStepDefs {
     }
 
     @Given("Launch Employee Management application")
-    public void launch_employee_management_application() {
-        driver.get("http://localhost:3000");
+    public void launch_employee_management_application() throws IOException {
+        driver.get(loadProps().getProperty("projectURL"));
     }
 
     @When("User lands on home page {string}")
@@ -148,4 +150,6 @@ public class SmokeStepDefs {
             System.out.println("User deleted successfully");
         }
     }
+
+
 }
