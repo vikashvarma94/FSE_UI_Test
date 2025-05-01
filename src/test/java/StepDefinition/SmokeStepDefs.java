@@ -9,13 +9,9 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,7 +22,6 @@ import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Properties;
 
 public class SmokeStepDefs extends Browser{
     private static WebDriver driver;
@@ -49,14 +44,16 @@ public class SmokeStepDefs extends Browser{
         }
     }
 
-    @Given("Launch Employee Management application")
-    public void launch_employee_management_application() throws IOException {
-        driver.get(loadProps().getProperty("projectURL"));
-    }
+    @Given("Launch application {string}")
+    public void launchApplication(String projectURL) throws IOException {
+            driver.get(loadProps().getProperty(projectURL));
+
+                }
 
     @When("User lands on home page {string}")
-    public void userLandsOnHomePage(String title) throws InterruptedException {
-        driver.getTitle().equalsIgnoreCase(title);
+    public void userLandsOnHomePage(String title) {
+        Assert.assertTrue(driver.getTitle().contains(title));
+        System.out.println(driver.getCurrentUrl());
     }
 
     @Then("Verify home page header {string}")
@@ -150,6 +147,7 @@ public class SmokeStepDefs extends Browser{
             System.out.println("User deleted successfully");
         }
     }
+
 
 
 }

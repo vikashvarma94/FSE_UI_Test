@@ -35,7 +35,7 @@ public class Browser {
 
     /*Load properties from env file*/
     public Properties loadProps() throws IOException {
-        FileInputStream input = new FileInputStream("src\\env.properties");
+        FileInputStream input = new FileInputStream("src\\main\\resources\\env.properties");
         Properties props = new Properties();
         props.load(input);
         return props;
