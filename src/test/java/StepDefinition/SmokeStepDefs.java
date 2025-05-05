@@ -44,17 +44,7 @@ public class SmokeStepDefs extends Browser{
         }
     }
 
-    @Given("Launch application {string}")
-    public void launchApplication(String projectURL) throws IOException {
-            driver.get(loadProps().getProperty(projectURL));
 
-                }
-
-    @When("User lands on home page {string}")
-    public void userLandsOnHomePage(String title) {
-        Assert.assertTrue(driver.getTitle().contains(title));
-        System.out.println(driver.getCurrentUrl());
-    }
 
     @Then("Verify home page header {string}")
     public void verifyHomePageHeader(String header) {
