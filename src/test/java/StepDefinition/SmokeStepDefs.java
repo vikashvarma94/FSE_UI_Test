@@ -6,9 +6,7 @@ import Utilities.Browser;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,7 +46,7 @@ public class SmokeStepDefs extends Browser{
 
     @Then("Verify home page header {string}")
     public void verifyHomePageHeader(String header) {
-        homePage.header().getText().equals(header);
+        homePage.header.getText().equals(header);
     }
 
     @And("Verify employees table column names")
@@ -113,8 +111,8 @@ public class SmokeStepDefs extends Browser{
     public void verifyUserLandsOnHomePageAfterClickingBackToHomeButton() {
         userPage.elementByText("Back to Home").click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofMillis(5000));
-        wait.until(ExpectedConditions.visibilityOf(homePage.header()));
-        Assert.assertTrue(homePage.header().isDisplayed());
+        wait.until(ExpectedConditions.visibilityOf(homePage.header));
+        Assert.assertTrue(homePage.header.isDisplayed());
     }
 
     @And("User navigates to edit {} user page by clicking on edit button")

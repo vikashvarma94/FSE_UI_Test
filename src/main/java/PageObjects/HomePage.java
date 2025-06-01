@@ -3,27 +3,32 @@ package PageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+import javax.swing.*;
 import java.util.List;
 
 public class HomePage {
-
+    WebDriver driver;
     public HomePage(WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
-    private WebDriver driver;
 
-    //Ex of encapsulation
-    private By header = By.xpath("//a[@class=\"navbar-brand\"]");
+    @FindBy(xpath = "//a[@class=\"navbar-brand\"]")
+    public WebElement header;
+
+    public WebElement getWebElement(WebElement element) {
+        return element;
+    }
+
     private By tableColumn = By.xpath("//thead/tr/th");
     private By links = By.tagName("a");
     private By addUser = By.xpath("//a[text()='Add User']");
     private By edit = By.xpath("//thead/tr/th");
     private By delete = By.xpath("//thead/tr/th");
 
-    public WebElement header() {
-        return driver.findElement(header);
-    }
 
     public List<WebElement> allLinks() {
         return driver.findElements(links);
@@ -52,4 +57,6 @@ public class HomePage {
     public WebElement selectUserByName(String name) {
         return driver.findElement(By.xpath("//td[text()='" + name + "']"));
     }
+
+
 }
