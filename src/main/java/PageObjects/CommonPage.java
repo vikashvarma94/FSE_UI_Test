@@ -1,12 +1,17 @@
 package PageObjects;
 
-import org.openqa.selenium.By;
+import PageObjects.FSE.FSE_UserPage;
+import PageObjects.FSE.FSE_HomePage;
+import PageObjects.Naukri.NaukriHome;
+import PageObjects.Naukri.NaukriLogin;
+import Utilities.Browser;
+import org.apache.logging.log4j.core.util.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.lang.reflect.Field;
 
-public class CommonPage {
+public class CommonPage extends Browser {
     WebDriver driver;
 
     public CommonPage(WebDriver driver) {
@@ -17,13 +22,16 @@ public class CommonPage {
         Object obj = null;
         switch (className) {
             case "HomePage":
-                obj = new HomePage(driver);
+                obj = new FSE_HomePage(driver);
                 break;
             case "UserPage":
-                obj = new UserPage(driver);
+                obj = new FSE_UserPage(driver);
                 break;
             case "NaukriLogin":
                 obj = new NaukriLogin(driver);
+                break;
+            case "NaukriHome":
+                obj = new NaukriHome(driver);
                 break;
             default:
                 new IllegalArgumentException("No page");
@@ -54,5 +62,15 @@ public class CommonPage {
         } catch (Exception e) {
             System.out.println("Exception message" + e);
         }
+    }
+
+    public String getActualText(String page, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+        String actualTest = null;
+        try {
+            actualTest = getWebElement(page, fieldName).getText();
+        } catch (Exception e) {
+            System.out.println("Exception message" + e);
+        }
+        return actualTest;
     }
 }

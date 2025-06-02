@@ -1,4 +1,4 @@
-package PageObjects;
+package PageObjects.Naukri;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -24,7 +24,7 @@ public class NaukriLogin {
     @FindBy(xpath = "//input[@type=\"password\"]")
     public WebElement password;
 
-    @FindBy(xpath = "//input[@type=\"submit\"]")
+    @FindBy(xpath = "//button[@type=\"submit\"]")
     public WebElement login;
 
 }

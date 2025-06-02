@@ -1,7 +1,7 @@
 package StepDefinition;
 
-import PageObjects.HomePage;
-import PageObjects.UserPage;
+import PageObjects.FSE.FSE_HomePage;
+import PageObjects.FSE.FSE_UserPage;
 import Utilities.Browser;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -23,15 +23,15 @@ import java.util.NoSuchElementException;
 
 public class SmokeStepDefs extends Browser{
     private static WebDriver driver;
-    HomePage homePage;
-    UserPage userPage;
+    FSE_HomePage homePage;
+    FSE_UserPage userPage;
 
     @Before
     public void setup() throws InterruptedException, IOException {
         driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
-        homePage = new HomePage(driver);
-        userPage = new UserPage(driver);
+        homePage = new FSE_HomePage(driver);
+        userPage = new FSE_UserPage(driver);
 
     }
 

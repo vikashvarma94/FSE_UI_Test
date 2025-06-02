@@ -1,12 +1,12 @@
-package PageObjects;
+package PageObjects.FSE;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class UserPage {
+public class FSE_UserPage {
 
-    public UserPage(WebDriver driver) {
+    public FSE_UserPage(WebDriver driver) {
         this.driver = driver;
     }
     private WebDriver driver;

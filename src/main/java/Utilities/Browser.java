@@ -9,17 +9,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Browser {
+public class Browser extends LoadProps {
 
     private static WebDriver driver;
 
     public void setDriver(String browser) {
         switch (browser) {
             case "Chrome":
-                driver= new ChromeDriver();
+                driver = new ChromeDriver();
                 break;
             case "Edge":
-                driver= new EdgeDriver();
+                driver = new EdgeDriver();
                 break;
             default:
                 new IllegalArgumentException("No browser");
@@ -29,16 +29,12 @@ public class Browser {
 
     /*Get browser details from env.properties file*/
     public WebDriver getDriver() throws IOException {
-        setDriver(loadProps().getProperty("browser"));
+        if (driver == null) {
+            setDriver(loadProps().getProperty("browser"));
+        }
         return driver;
     }
 
-    /*Load properties from env file*/
-    public Properties loadProps() throws IOException {
-        FileInputStream input = new FileInputStream("src\\main\\resources\\env.properties");
-        Properties props = new Properties();
-        props.load(input);
-        return props;
-    }
+
 }
 
