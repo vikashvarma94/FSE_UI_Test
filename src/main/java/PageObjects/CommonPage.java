@@ -40,8 +40,9 @@ public class CommonPage extends Browser {
         return obj;
     }
 
-    public WebElement getWebElement(String page, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+    public WebElement getWebElement(String page, String fieldName) throws NoSuchFieldException, IllegalAccessException, NoSuchMethodException {
         Object pageObject = getPageObject(page);
+
         Field field = pageObject.getClass().getField(fieldName);
         WebElement webElement = (WebElement) field.get(pageObject);
 
@@ -56,7 +57,7 @@ public class CommonPage extends Browser {
         }
     }
 
-    public void clickButton(String page, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+    public void clickButton(String page, String fieldName ) throws NoSuchFieldException, IllegalAccessException {
         try {
             getWebElement(page, fieldName).click();
         } catch (Exception e) {

@@ -12,7 +12,6 @@ public class NaukriHome {
         PageFactory.initElements(driver, this);
     }
 
-
     @FindBy(className="info__heading")
-    private WebElement heading;
+    public WebElement heading;
 }

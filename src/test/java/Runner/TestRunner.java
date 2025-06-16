@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = "src/test/Resources/Features",
         glue = {"StepDefinition"},
-        plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber.json"},
+        plugin = {"pretty", "html:target/cucumber-reports", "json:target/cucumber.json","com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
         tags = "@Login",
         monochrome = true,
         publish = true)

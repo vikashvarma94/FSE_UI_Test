@@ -35,15 +35,6 @@ public class SmokeStepDefs extends Browser{
 
     }
 
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-
-
-
     @Then("Verify home page header {string}")
     public void verifyHomePageHeader(String header) {
         homePage.header.getText().equals(header);

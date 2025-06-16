@@ -16,13 +16,11 @@ import static StepDefinition.BaseHooks.driver;
 import static StepDefinition.BaseHooks.report;
 
 public class CommonStepDefs {
-ExtentTest test;
+
     CommonPage commonPage = new CommonPage(driver);
 
     @Given("Launch application {string}")
     public void launchApplication(String projectURL) throws IOException {
-        test = report.createTest("Login Test");
-        test.log(Status.INFO, "Navigating to the login page");
         driver.get(commonPage.loadProps().getProperty(projectURL));
     }
 
@@ -37,13 +35,14 @@ ExtentTest test;
     }
 
     @When("clicks on Button_Link {string} on {string}")
-    public void clicksOnButtonOnPage(String page, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+    public void clicksOnButtonOnPage(String fieldName, String page) throws NoSuchFieldException, IllegalAccessException, InterruptedException {
         commonPage.clickButton(page, fieldName);
+        Thread.sleep(3000);
     }
 
     @When("Verify expected text {string} from {string} on {string}")
     public void verifyExpectedTextFromOn(String exptext, String fieldName, String page) throws NoSuchFieldException, IllegalAccessException {
         String actualText = commonPage.getActualText(page, fieldName);
-        Assert.assertEquals(actualText, exptext);
+        Assert.assertEquals(exptext, actualText);
     }
 }
