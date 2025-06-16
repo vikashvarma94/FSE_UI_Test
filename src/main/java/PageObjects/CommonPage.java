@@ -5,7 +5,7 @@ import PageObjects.FSE.FSE_HomePage;
 import PageObjects.Naukri.NaukriHome;
 import PageObjects.Naukri.NaukriLogin;
 import Utilities.Browser;
-import org.apache.logging.log4j.core.util.Assert;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
